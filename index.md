@@ -300,10 +300,10 @@ please preview your site before committing, and make sure to run
 <p>
 <p>
   We will be running pre-workshop drop-in sessions to assist with any setup issues.
-  <li>
-    <ul>North Haugh - 2-4pm, Tuesday 30th April 2019 in the Jack Cole Building with Alex Konovalov</ul>
-    <ul>Town - 2-4pm, Wednesday 1st May 2019 at the Old Union Diner with Patrick McCann</ul>
-  </li>
+  <ul>
+    <li>North Haugh - 2-4pm, Tuesday 30th April 2019 in the Jack Cole Building with Alex Konovalov</li>
+    <li>Town - 2-4pm, Wednesday 1st May 2019 at the Old Union Diner with Patrick McCann</li>
+  </ul>
 </p>
 <p>
   We maintain a list of common issues that occur during installation as a reference for instructors
