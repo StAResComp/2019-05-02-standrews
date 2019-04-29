@@ -1364,7 +1364,7 @@ $ nano analyse_files.py
 
 ```python
     # Test for suspicious maxima
-    if np.max(data, axis=0)[0] == 0 and np.max(data, axis=0)[20] == 20:
+    if numpy.max(data, axis=0)[0] == 0 and numpy.max(data, axis=0)[20] == 20:
         print("Suspicious-looking maxima!")
 ```
 
@@ -1388,10 +1388,10 @@ $ nano analyse_files.py
 
 ```python
     # Test for suspicious maxima
-    if np.max(data, axis=0)[0] == 0 and np.max(data, axis=0)[20] == 20:
+    if numpy.max(data, axis=0)[0] == 0 and numpy.max(data, axis=0)[20] == 20:
         print("Suspicious-looking maxima!")
-    elif np.sum(data.min(axis=0)) == 0:
-        print('Minima sum to zero!')
+    elif numpy.sum(numpy.min(data, axis=0)) == 0:
+        print("Minima sum to zero!")
 ```
 
 ```bash
@@ -1415,12 +1415,12 @@ $ nano analyse_files.py
 
 ```python
     # Test for suspicious maxima
-    if np.max(data, axis=0)[0] == 0 and np.max(data, axis=0)[20] == 20:
+    if numpy.max(data, axis=0)[0] == 0 and numpy.max(data, axis=0)[20] == 20:
         print("Suspicious-looking maxima!")
-    elif np.sum(data.min(axis=0)) == 0:
-        print('Minima sum to zero!')
+    elif numpy.sum(numpy.min(data, axis=0)) == 0:
+        print("Minima sum to zero!")
     else:
-        print('Seems OK!')
+        print("Seems OK!")
 ```
 
 ```bash
@@ -1440,7 +1440,7 @@ $ python analyse_files.py
 - variables
 - data types: `numpy.array`s, `list`s, `string`s, numbers
 - file IO: loading data, listing files, manipulating filenames
-- calculating statistics
+- computing statistics
 - plotting data: plots and subplots
 - program flow: loops and conditionals
 - automating multiple analyses
@@ -1460,7 +1460,7 @@ $ python analyse_files.py
 
 Please do use the course Etherpad:
 
-- [http://pad.software-carpentry.org/2018-11-27-standrews](http://pad.software-carpentry.org/2018-11-27-standrews)
+- [http://pad.software-carpentry.org/2019-05-02-standrews](http://pad.software-carpentry.org/2019-05-02-standrews)
 
 <div class="highlight">
 - **Communal notes**: share your understanding, and benefit from others
@@ -1486,28 +1486,12 @@ Please do use the course Etherpad:
 </div>
 
 
-## XKCD
+## XKCD: writing good code
 
 <center>
 <img src="images/good_code.png" width="40%" />
 </center>
 
-## What are we doing?
-
-<div class="highlight">
-Analysing experimental data
-
-- Effectiveness of a new treatment for arthritis
-- Several patients, recording inflammation on each day
-- Tabular (comma-separated) data
-
-<div class="attention">
-We're going to improve our code
-</div>
-
-- automation, reuse, sharing
-- functions, documentation
-- defensive programming
 
 ## Setting up
 
@@ -1519,7 +1503,7 @@ Before we begin…
 
 ```bash
 $ cd ~/Desktop
-$ cd python-novice-inflammation
+$ cd pni
 ```
 
 <center>
@@ -1540,6 +1524,10 @@ jupyter notebook
 <div class="attention">
 **LIVE DEMO**
 </div>
+
+<center>
+<img src="images/red_green_sticky.png" width="100%" />
+</center>
 
 
 ## `Jupyter` landing page
@@ -1681,7 +1669,7 @@ $$y = f(x)$$
 - The output $y$ depends in some way on the value of $x$ - defined by $f()$.
 
 <div class="attention">
-**Not all functions in code take an input, or produce a usable output, but the principle is generally the same.**
+**Not all functions you will see take input, or produce usable output, but the principle is generally the same.**
 </div>
 
 
@@ -1790,7 +1778,7 @@ combining small bits into larger bits until the behaviour we want is obtained
 </div>
 
 
-## <img src="images/exercise.png" height="75px" /> Exercise 08 (10min)
+## <img src="images/exercise.png" height="75px" /> Exercise 08 (5min)
 
 <div class="highlight">
 Can you write a function called `outer()` that:
@@ -1832,7 +1820,7 @@ print(a)
 </div>
 
 
-## <img src="images/exercise.png" height="75px" /> Exercise 09 (5min)
+## <img src="images/exercise.png" height="75px" /> Exercise 09 (1min)
 
 What would be printed if you ran the code below?
 
@@ -1886,12 +1874,12 @@ The code is divisible into two sections
 
 ```python
 def detect_problems(data):
-    if np.max(data, axis=0)[0] == 0 and np.max(data, axis=0)[20] == 20:
-        print('Suspicious looking maxima!')
-    elif np.sum(data.min(axis=0)) == 0:
-        print('Minima add up to zero!')
+    if numpy.max(data, axis=0)[0] == 0 and numpy.max(data, axis=0)[20] == 20:
+        print("Suspicious-looking maxima!")
+    elif numpy.sum(numpy.min(data, axis=0)) == 0:
+        print("Minima sum to zero!")
     else:
-        print('Seems OK!')
+        print("Seems OK!")
 ```
 
 <div class="attention">
@@ -1948,7 +1936,7 @@ for fname in files:
 Why should I bother?
 </div>
 
-- After 6 months, the referee report arrives and you need to rerun experiments
+- After 6 months, the referee's report arrives and you need to rerun experiments
 - Another student is continuing the project
 - Some random person reads your article and asks for the code
 - Helps spot errors quickly
@@ -1968,6 +1956,11 @@ How can I write Python programs that will work like Unix command-line tools?
 - Use the values of command-line arguments in a program.
 - Handle flags and files separately in a command-line program.
 - Read data from standard input in a program so that it can be used in a pipeline (with *pipes*: `|`)
+
+<div class="attention">
+**LIVE DEMO**
+</div>
+
 
 ## The `sys` module
 
@@ -1990,8 +1983,6 @@ print('version is', sys.version)
 
 ```bash
 $ python sys_version.py 
-version is 3.6.3 |Anaconda custom (64-bit)| (default, Oct  6 2017, 12:04:38) 
-[GCC 4.2.1 Compatible Clang 4.0.1 (tags/RELEASE_401/final)]
 ```
 
 <div class="attention">
@@ -2020,9 +2011,7 @@ print('sys.argv is', sys.argv)
 
 ```bash
 $ python sys_argv.py 
-sys.argv is ['sys_argv.py']
 $ python sys_argv.py item1 item2 somefile.txt
-sys.argv is ['sys_argv.py', 'item1', 'item2', 'somefile.txt']
 ```
 
 <div class="attention">
@@ -2092,10 +2081,10 @@ def main():
 ## Calling a script
 
 <div class="attention">
-There's a way to tell if a `Python` file is being run as a script
+A `Python` file can tell if it is being run as a script
 </div>
 
-- If we use this, we can use the same file as:
+- If we do this, we can use the same file as:
   - a module (`import readings`)
   - a script (`$ python readings.py`)
 
@@ -2133,7 +2122,6 @@ We want to be able to analyse multiple files with one command
 $ ls data/small-*
 data/small-01.csv  data/small-02.csv  data/small-03.csv
 $ python sys_argv.py data/small-*
-sys.argv is ['sys_argv.py', 'data/small-01.csv', 'data/small-02.csv', 'data/small-03.csv']
 ```
 
 - All arguments from index `1` onwards are filenames
@@ -2268,8 +2256,8 @@ $ python readings.py --max < data/small-01.csv
 ```python
 import numpy as np
 
-def centre(data, desired):
-    return (data - np.mean(data)) + desired
+def centre(data, value):
+    return (data - np.mean(data)) + value
 ```
 
 <div class="attention">
@@ -2303,7 +2291,7 @@ Try the function on real data…
 </div>
 
 ```python
-data = numpy.loadtxt(fname='data/inflammation-01.csv', delimiter=',')
+data = np.loadtxt(fname='data/inflammation-01.csv', delimiter=',')
 print(centre(data, 0))
 ```
 
@@ -2321,10 +2309,12 @@ print(centre(data, 0))
 
 ```python
 centred = centre(data, 0)
-print('original min, mean, and max are:', numpy.min(data), numpy.mean(data), numpy.max(data))
-print('min, mean, and max of centered data are:', numpy.min(centred),
-      numpy.mean(centred), numpy.max(centred))
-print('std dev before and after:', numpy.std(data), numpy.std(centred))      
+print('original min, mean, and max are:', 
+      np.min(data), np.mean(data), np.max(data))
+print('min, mean, and max of centered data are:', 
+      np.min(centred), np.mean(centred), np.max(centred))
+print('std dev before and after:', 
+      np.std(data), np.std(centred))      
 ```
 
 <div class="attention">
@@ -2343,9 +2333,9 @@ print('std dev before and after:', numpy.std(data), numpy.std(centred))
 </div>
     
 ```python
-def centre(data, desired):
-    """Returns the array in data, recentered around the desired value."""
-    return (data - numpy.mean(data)) + desired
+def centre(data, value):
+    """Returns the array in data, recentered around value."""
+    return (data - np.mean(data)) + value
 
 help(centre)
 ```
@@ -2362,12 +2352,9 @@ help(centre)
 </div>
 
 ```python
-def centre(data, desired=0.0):
-    """Returns the array in data, recentered around the desired value.
-    
-    Example: centre([1, 2, 3], 0) => [-1, 0, 1]
-    """
-    return (data - np.mean(data)) + desired
+def centre(data, value=0.0):
+    """Returns the array in data, recentered around the value"""
+    return (data - np.mean(data)) + value
 ```
 
 ```python
@@ -2385,13 +2372,15 @@ centre(data)
 
 <div class="highlight">
 Can you write a function called `rescale()` that
-- takes an array as input
-- returns an array with values scaled in the range [0.0, 1.0]
-- has an informative docstring
+<ul>
+<li> takes an array as input
+<li> returns an array with values scaled in the range [0.0, 1.0]
+<li> has an informative docstring
+</ul>
 </div>
 
 <div class="attention">
-- **HINT:** If `L` and `H` are the lowest and highest values in the original array, then the replacement for a value `v` should be `(v-L) / (H-L)`.
+- **HINT:** If `lo` and `hi` are the lowest and highest values in the original array, then the replacement for a value `val` should be `(val - lo) / (hi - lo)`.
 </div>
 
 <center>
@@ -2450,17 +2439,13 @@ favourite_ice_cream()
 ```python
 ---------------------------------------------------------------------------
 IndexError                                Traceback (most recent call last)
-<ipython-input-1-b0e1f9b712d6> in <module>()
-      8     print(ice_creams[3])
-      9 
----> 10 favourite_ice_cream()
+<ipython-input-2-713948c7cbba> in <module>
+----> 1 favourite_ice_cream()
 
-<ipython-input-1-b0e1f9b712d6> in favourite_ice_cream()
-      6         "strawberry"
-      7     ]
-----> 8     print(ice_creams[3])
-      9 
-     10 favourite_ice_cream()
+<ipython-input-1-d5749f56e901> in favourite_ice_cream()
+      1 def favourite_ice_cream():
+      2     ice_creams = ["chocolate", "vanilla", "strawberry"]
+----> 3     print(ice_creams[3])
 
 IndexError: list index out of range
 ```
@@ -2567,8 +2552,7 @@ NameError: name 'a' is not defined
 
 ```python
 letters = ['a', 'b']
-print("Letter #1 is", letters[0])
-print("Letter #2 is", letters[1])
+[...]
 print("Letter #3 is", letters[2])
 
 Letter #1 is a
@@ -2588,7 +2572,7 @@ IndexError: list index out of range
 </div>
 
 
-## <img src="images/exercise.png" height="75px" /> Exercise 11 (10min)
+## <img src="images/exercise.png" height="75px" /> Exercise 11 (5min)
 
 * Can you read the code below, and (without running it) identify what the errors are?
 * Can you fix all the errors so the code prints `abbabbabba`?
@@ -2727,7 +2711,6 @@ print('total is:', total)
 def normalise_rectangle(rect):
     """Normalises a rectangle to the origin, longest axis 1.0 units."""
     x0, y0, x1, y1 = rect
-    
     dx = x1 - x0
     dy = y1 - y0
     

@@ -23,7 +23,7 @@ These notes are intended for the tutor as they work through the material, but ma
 - [SECTION 12: Refactoring](#section-12-refactoring)
 - [SECTION 13: Command-line programs](#section-13-command-line-programs)
 - [SECTION 14: Testing and documentation](#section-14-testing-and-documentation)
-- [SECTION 15: Errors](#section-15-errors)
+- [SECTION 15: Errors and Exceptions](#section-15-errors-and-exceptions)
 - [SECTION 16: Defensive programming](#section-16-defensive-programming)
 
 <!-- /TOC -->
@@ -48,7 +48,7 @@ These notes are intended for the tutor as they work through the material, but ma
 - Programming is a way to **solve problems in your research** through making a computer do work **quickly** and **accurately**
 - You'll build **functions** that do specific, defined tasks
 - You'll **automate** those functions to perform tasks over and over again (in various combinations)
-- You'll **manipulate data**, which is at the heart of all academia
+- You'll **manipulate data**, which is at the heart of all research
 - You'll learn some **file input/output** to make the computer read and write useful information
 - You'll learn some **data structures**, which are ways to organise data so that the computer can deal with it efficiently
 
@@ -2038,21 +2038,21 @@ python analyse_files.py
 - Is day zero value 0, and day 20 value 20?
 
 ```bash
-$ nano analyse_files.py
+nano analyse_files.py
 ```
 
 - **ADD TO EXISTING CODE BEFORE CREATING FIGURE**
 
 ```python
     # Test for suspicious maxima
-    if np.max(data, axis=0)[0] == 0 and np.max(data, axis=0)[20] == 20:
+    if numpy.max(data, axis=0)[0] == 0 and numpy.max(data, axis=0)[20] == 20:
         print("Suspicious-looking maxima!")
 ```
 
 - **RUN SCRIPT**
 
 ```bash
-$ python analyse_files.py
+python analyse_files.py
 ```
 
 ----
@@ -2062,23 +2062,23 @@ $ python analyse_files.py
 - Are all the minima zero? (do they sum to zero?)
 
 ```bash
-$ nano analyse_files.py
+nano analyse_files.py
 ```
 
 - **ADD TO EXISTING CODE BEFORE CREATING FIGURE**
 
 ```python
     # Test for suspicious maxima
-    if np.max(data, axis=0)[0] == 0 and np.max(data, axis=0)[20] == 20:
+    if numpy.max(data, axis=0)[0] == 0 and numpy.max(data, axis=0)[20] == 20:
         print("Suspicious-looking maxima!")
-    elif np.sum(data.min(axis=0)) == 0:
-        print('Minima sum to zero!')
+    elif numpy.sum(numpy.min(data, axis=0)) == 0:
+        print("Minima sum to zero!")
 ```
 
 - **RUN SCRIPT**
 
 ```bash
-$ python analyse_files.py
+python analyse_files.py
 ```
 
 ----
@@ -2088,24 +2088,26 @@ $ python analyse_files.py
 - If everything's OK, **let's be reassuring**
 - **ADD TO EXISTING CODE BEFORE PLOT**
 
-
 - **ADD TO EXISTING CODE BEFORE CREATING FIGURE**
 
 ```python
     # Test for suspicious maxima
-    if np.max(data, axis=0)[0] == 0 and np.max(data, axis=0)[20] == 20:
+    if numpy.max(data, axis=0)[0] == 0 and numpy.max(data, axis=0)[20] == 20:
         print("Suspicious-looking maxima!")
-    elif np.sum(data.min(axis=0)) == 0:
-        print('Minima sum to zero!')
+    elif numpy.sum(numpy.min(data, axis=0)) == 0:
+        print("Minima sum to zero!")
     else:
-        print('Seems OK!')
+        print("Seems OK!")
 ```
 
 - **RUN SCRIPT**
 
 ```bash
-$ python analyse_files.py
+python analyse_files.py
 ```
+
+- Nothing seems OK.
+    - Pretty usual for research, I'd say.
 
 ![progress check](images/red_green_sticky.png)
 
@@ -2122,7 +2124,7 @@ Some things you might not have known about at lunchtime:
 - variables
 - data types: arrays, lists, strings, numbers
 - file IO: loading data, listing files, manipulating filenames
-- calculating statistics
+- computing statistics
 - plotting data: plots and subplots
 - program flow: loops and conditionals
 - automating multiple analyses
@@ -2157,12 +2159,13 @@ Some things you might not have known about at lunchtime:
 
 ----
 
-**SLIDE** XKCD
+**SLIDE** XKCD: writing good code
 
 - Again, this slide is only a little bit flippant
 - *No-one* writes perfect code, first time
-  - It's all about revision, and good practice: **defensive programming**
-  - These principles will make your life, and other people's lives, much easier
+    - Everyone thinks their code could be better
+    - It's all about revision, and good practice: **defensive programming**
+    - These principles will make your life, and other people's lives, much easier
 
 ----
 
@@ -2171,29 +2174,29 @@ Some things you might not have known about at lunchtime:
 - We want a neat (clean) working environment
 
 - Change directory to desktop (in terminal or Explorer)
-- Change your working directory to `python-novice-inflammation` (from yesterday/earlier)
+- Change your working directory to `pni` (from yesterday/earlier)
 
 ```bash
-$ cd ~/Desktop
-$ cd python-novice-inflammation
+cd ~/Desktop
+cd pni
 ```
 
 ![progress check](images/red_green_sticky.png)
 
 ----
 
-## SECTION 10: `Jupyter` notebooks
+## SECTION 10: `Jupyter` notebooks
 
 ----
 
 **SLIDE** Starting `Jupyter`
 
-- Make sure you're in the project directory `python-novice-inflammation`
+- Make sure you're in the project directory `pni`
 - **Start `Jupyter`** from the command-line
 - **CHECK WHETHER EVERYONE SEES A WORKING JUPYTER NOTEBOOK**
 
 ```bash
-$ jupyter notebook
+jupyter notebook
 ```
 
 ![progress check](images/red_green_sticky.png)
@@ -2269,13 +2272,35 @@ As an example in `Python`, we will create a function that converts temperature b
 
 ----
 
-## SECTION 11: Functions
+**SLIDE** Entering code
+
+- We can **enter code directly into a code cell and run it**
+
+```python
+print(3 + 5)
+```
+
+- The output appears beneath the code cell.
+
+- To **edit a cell that has already been run, double-click on it (DEMONSTRATE)**
+    - We'll write some new `Python` code in the cell
+
+```python
+def fahr_to_kelvin(temp):
+    return ((temp - 32) * (5 / 9)) + 273.15
+```
+
+- This code is a **FUNCTION**
+
+----
+
+## SECTION 11: Functions
 
 ----
 
 **SLIDE** Motivation
 
-- We wrote some code that plots values of interest from multiple datasets
+- We wrote some code that quickly analyses and plots values of interest from multiple datasets
   - **but that code is long and complicated**
 
 - The code is also not very flexible if we want to deal with thousands of files, and we can't modify it to plot only a subset of files very easily
@@ -2283,6 +2308,7 @@ As an example in `Python`, we will create a function that converts temperature b
 
 - **SO** we will package our code for reuse.
   - **We do this by writing functions**
+  - Functions are a shorthand way of re-executing longer pieces of code.
 
 ----
 
@@ -2309,11 +2335,13 @@ As an example in `Python`, we will create a function that converts temperature b
 - In `Python` this **translates to the code below**:
   - The function **performs a calculation, which is *returned* by the `return` statement**.
   - The value of **the variable `temp` is taken through the same calculation as in the mathematical function**, and is then *return*ed.
+
+- The formal definition of this in `Python` has some required components:
   - Functions are *defined* by the `def` keyword
   - The name of the function follows the `def` keyword (equivalent to `f` in the mathematical example)
   - The first line ends in a colon, just like a `for` loop or `if` statement.
-  - The code, or *body* of the function is indented, just like a `for` loop or `if` statement.
-  - The *parameters* or *inputs* to the function are then defined in parentheses. These get a variable name **which only exists within the function**. Here, there is one parameter, called `temp`.
+  - The code, or *body* of the function is indented as a **code block**, just like a `for` loop or `if` statement.
+  - The *arguments* or *inputs* to the function are then defined in parentheses. These are variables and get a variable name **which only exists within the function**. Here, there is one argument, called `temp`.
 
 ----
 
@@ -2368,7 +2396,7 @@ print(temp_c)
 
 **SLIDE** New functions from old
 
-- **ASK LEARNERS HOW WE CAN TURN THIS INTO A NEW FUNCTION: `fahr_to_celsius()`:
+- **ASK LEARNERS HOW WE CAN TURN THIS INTO A NEW FUNCTION: `fahr_to_celsius()`**:
 
 ```python
 def fahr_to_celsius(temp_f):
@@ -2381,11 +2409,13 @@ def fahr_to_celsius(temp_f):
 print('freezing point of water in Celsius:', fahr_to_celsius(32.0))
 ```
 
-- **THIS IS HOW PROGRAMS ARE BUILT: COMBINING SMALL CHUNKS OF CODE INTO LARGER BITS UNTIL WE GET THE RESULT WE WANT**
+- **THIS IS HOW PROGRAMS ARE BUILT**:
+    - Write small functions that do one thing well (and correctly)
+    - Combine the small functions into larger functions until we have the result we need
 
 ----
 
-**SLIDE** Exercise 08 (10min)
+**SLIDE** Exercise 08 (5min)
 
 - **SHOW THE SLIDES FOR THE EXERCISE**
 
@@ -2407,7 +2437,7 @@ def outer(s)
 ```markdown
 ## Function scope
 
-Variables defined within a function (including parameters) are not available outside the function unless they are returned.
+Variables defined within a function (including arguments) are not available outside the function unless they are returned.
 ```
 
 - **This is called *function scope***
@@ -2463,7 +2493,7 @@ print(a)
 
 ----
 
-**SLIDE** Exercise 09 (5min)
+**SLIDE** Exercise 09 (1min)
 
 - **PUT THE SLIDES ON SCREEN**
 - **MCQ: put coloured stickies up**
@@ -2472,7 +2502,7 @@ print(a)
 
 ----
 
-## SECTION 12: Refactoring
+## SECTION 12: Refactoring
 
 ----
 
@@ -2501,18 +2531,18 @@ print(a)
 - **OPEN EDITOR AND CHANGE CODE**
 
 ```bash
-$ nano analyse_files.py
+nano analyse_files.py
 ```
 
 ```python
 # Detect problems with a dataset
 def detect_problems(data):
-    if np.max(data, axis=0)[0] == 0 and np.max(data, axis=0)[20] == 20:
+    if numpy.max(data, axis=0)[0] == 0 and numpy.max(data, axis=0)[20] == 20:
         print("Suspicious-looking maxima!")
-    elif np.sum(data.min(axis=0)) == 0:
-        print('Minima sum to zero!')
+    elif numpy.sum(numpy.min(data, axis=0)) == 0:
+        print("Minima sum to zero!")
     else:
-        print('Seems OK!')
+        print("Seems OK!")
 
 # Analyse each file in turn
 for fname in files:
@@ -2528,7 +2558,7 @@ for fname in files:
 - **SAVE AND RUN SCRIPT**
 
 ```bash
-$ python analyse_files.py
+python analyse_files.py
 ```
 
 ----
@@ -2538,41 +2568,42 @@ $ python analyse_files.py
 - We'll write **a function that plots the data**
 
 ```python
-# Plot passed data in the specified file
+# plot data in a file
 def plot_data(data, fname):
-    # create figure and three axes
-    fig = plt.figure(figsize=(10.0, 3.0))
+    fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
     axes1 = fig.add_subplot(1, 3, 1)
     axes2 = fig.add_subplot(1, 3, 2)
     axes3 = fig.add_subplot(1, 3, 3)
 
     # decorate the axes
-    axes1.set_ylabel('average')
-    axes2.set_ylabel('maximum')
-    axes3.set_ylabel('minimum')
+    axes1.set_ylabel("mean")
+    axes2.set_ylabel("maximum")
+    axes3.set_ylabel("minimum")
 
-    # plot the data
-    axes1.plot(data.mean(axis=0))
-    axes2.plot(data.max(axis=0))
-    axes3.plot(data.min(axis=0))
+    # plot data
+    axes1.plot(numpy.mean(data, axis=0))
+    axes2.plot(numpy.max(data, axis=0))
+    axes3.plot(numpy.min(data, axis=0))
 
-    # tidy plot and render
+    # tidy and show plot
     fig.tight_layout()
-    print('Writing image to', imgname)
-    plt.savefig(imgname)
+
+    # save image to file
+    print("Writing image to", fname)
+    matplotlib.pyplot.savefig(fname)
 
 # Analyse each file in turn
 for fname in files:
     print("Analysing", fname)
 
-    # load data
-    data = np.loadtxt(fname=fname, delimiter=',')
+    # load data from file
+    data = numpy.loadtxt(fname=fname, delimiter=",")
 
-    # identify problems in the data
+    # test for suspicious maxima
     detect_problems(data)
 
     # plot image in file
-    imgname = fname[:-4] + '.png'
+    imgname = fname[:-4] + ".png"
     plot_data(data, imgname)
 ```
 
@@ -2586,7 +2617,6 @@ for fname in files:
   - Load the data with `np.loadtxt()`
   - `detect_problems()` in the data
   - `plot_data()` the data
-
 
 ```python
 # Analyse each file in turn
@@ -2616,7 +2646,7 @@ for fname in files:
 **SLIDE** Good code pays off
 
 - **YOU MAY BE ASKING YOURSELF WHY YOU WANT TO BOTHER WITH THIS**
-  - After 6 months, the referee report arrives and you need to rerun experiments
+  - After 6 months, the referee's report arrives and you need to rerun experiments
   - Another student is continuing the project
   - Some random person reads your article and asks for the code
   - Helps spot errors quickly
@@ -2637,6 +2667,12 @@ for fname in files:
 - Handle **flags and files** separately in a command-line program.
 - **Read data from standard input** in a program so that it can be used in a pipeline (with *pipes*: `|`)
 
+- **RUN EXAMPLE**
+
+```python
+python code/readings_04.py --mean data/inflammation-01.csv
+```
+
 ----
 
 **SLIDE** The `sys` module
@@ -2650,7 +2686,7 @@ for fname in files:
   - **Create a new file called `sys_version.py`**
 
 ```bash
-$ nano sys_version.py
+nano sys_version.py
 ```
 
 - **Enter the code below**
@@ -2678,7 +2714,7 @@ version is 3.6.3 |Anaconda custom (64-bit)| (default, Oct  6 2017, 12:04:38)
 - **Open a new file called `sys_argv.py` in the editor**
 
 ```bash
-$ nano sys_argv.py
+nano sys_argv.py
 ```
 
 - **Enter the code below**
@@ -2693,8 +2729,8 @@ print('sys.argv is', sys.argv)
 ```bash
 $ python sys_argv.py
 sys.argv is ['sys_argv.py']
-$ python sys_argv.py item1 item2 somefile.txt
-sys.argv is ['sys_argv.py', 'item1', 'item2', 'somefile.txt']
+$ python sys_argv.py file1 file2 somefile.txt --option -i input_file.csv
+sys.argv is ['sys_argv.py', 'file1', 'file2', 'somefile.txt', '--option', '-i', 'input_file.csv']
 ```
 
 - The **name of the script is always the first element: `sys.argv[0]`**
@@ -2704,28 +2740,33 @@ sys.argv is ['sys_argv.py', 'item1', 'item2', 'somefile.txt']
 **SLIDE** Building a new script
 
 - We're going to build a script that **reports readings from data files**
+    - We're going to think about how it works before we build it
+    - (**This is generally a good idea when programming**)
+
+- We want an argument to be the file containing the experimental data
 
 ```bash
-$ python readings.py mydata.csv
+python readings.py mydata.csv
 ```
 
 - We will make it **take options** `--min`, `--max`, `--mean`
   - The script will report *one* of these
 
 ```bash
-$ python readings.py --min mydata.csv
+python readings.py --min mydata.csv
 ```
 
 - We will make it **handle multiple files**
 
 ```bash
-$ python readings.py --min mydata.csv myotherdata.csv
+python readings.py --min mydata.csv myotherdata.csv
 ```
 
 - We will make it take `STDIN` so we can **use it with *pipes***
+    - (like you learned in the `bash`/`shell` lesson)
 
 ```bash
-$ python readings.py --min < mydata.csv
+python readings.py --min < mydata.csv
 ```
 
 ----
@@ -2734,11 +2775,12 @@ $ python readings.py --min < mydata.csv
 
 - We start with a script that doesn't do all that
   - We'll **build features in one-by-one**
+  - (also a good idea when programming)
 
 - **Create a new file called `readings.py` in the editor**
 
 ```bash
-$ nano readings.py
+nano readings.py
 ```
 
 - **Add the code below and explain**
@@ -2764,7 +2806,7 @@ def main():
 - **Run the script**
 
 ```bash
-$ python readings.py
+python readings.py
 ```
 
 - **NOTHING HAPPENS - WHY?**
@@ -2774,9 +2816,9 @@ $ python readings.py
 
 **SLIDE** Calling a script
 
-- **There's a way to tell if a `Python` file is being run as a script**
+- **A `Python` file can tell is being run as a script**
 
-- If we use this, we can use the same file as:
+- If we do this, we can use the same file as:
   - a module (`import readings`)
   - a script (`$ python readings.py`)
 
@@ -2851,10 +2893,11 @@ data/small-01.csv
 
 **SLIDES** Handling flags
 
-- **We want to use `--min`, `--max`, `--mean` to tell the script what to calculate**
+- **We want to use *flags* `--min`, `--max`, `--mean` to tell the script what to calculate**
+    - A *flag* starts with two hyphens, here
 
 ```bash
-$ python readings.py --max myfile.csv
+python readings.py --max myfile.csv
 ```
 
 - The flag will be `sys.argv[1]`, so filenames are `sys.argv[2:]`
@@ -2898,7 +2941,7 @@ $ python readings.py --std data/small-01.csv
 Action is not one of --min, --mean, or --max: --std
 ```
 
-- **We have a useful error message**
+- Even though we haven't quite completed the script, **we have a useful error message**
 
 ----
 
@@ -2908,7 +2951,7 @@ Action is not one of --min, --mean, or --max: --std
   - The `main()` function clearly handles the command-line
   - The `process()` function handles the data
 
-- **Add the code to `readings.py`
+- **Add the code to `readings.py`**
 
 ```python
 def process(filename, action):
@@ -2977,7 +3020,6 @@ $ python readings.py --mean < data/small-01.csv
 
 - **AND WE'RE DONE!!!**
 
-
 ----
 
 ## SECTION 14: Testing and documentation
@@ -2987,6 +3029,7 @@ $ python readings.py --mean < data/small-01.csv
 **SLIDE** Motivation
 
 - Once a useful function is written, it gets reused over and over, often without further checking
+    - There is often an assumption that if other people use a function/bit of code that it works correctly. This may not always be true.
 - When you write a function you should:
   - **Test output for correctness**
   - **Document the expected function**
@@ -3027,8 +3070,8 @@ import numpy as np
 - **EXPLAIN THE MATHS IF NECESSARY**
 
 ```python
-def centre(data, desired):
-    return (data - np.mean(data)) + desired
+def centre(data, value):
+    return (data - np.mean(data)) + value
 ```
 
 ----
@@ -3047,7 +3090,7 @@ z = np.zeros((2, 2))
 z
 ```
 
-- **Let's recentre the data at the value 2**
+- **Let's recentre the data at the value 3**
 
 ```python
 centre(z, 3.0)
@@ -3073,17 +3116,17 @@ centre(data, 0))
 
 - This looks OK, but **how would we know it worked?**
 
+- **ASK LEARNERS HOW THEY COULD VERIFY THE FUNCTION WORKED AS INTENDED**
+
 ----
 
 **SLIDE** Check properties
-
-- **ASK LEARNERS HOW THEY COULD VERIFY THE FUNCTION WORKED AS INTENDED**
 
 - We can **check properties of the original and centred data**
   - `mean`, `min`, `max`, `std`
 
 ```python
-print('original min, mean, and max are:', numpy.min(data), numpy.mean(data), numpy.max(data))
+print('original min, mean, and max are:', np.min(data), np.mean(data), np.max(data))
 ```
 
 - We'd expect the **mean of the new dataset to be approximately `0.0`**
@@ -3091,15 +3134,15 @@ print('original min, mean, and max are:', numpy.min(data), numpy.mean(data), num
 
 ```python
 centred = centre(data, 0)
-print('min, mean, and max of centered data are:', numpy.min(centred),
-      numpy.mean(centred), numpy.max(centred))
+print('min, mean, and max of centered data are:', np.min(centred),
+      np.mean(centred), np.max(centred))
 ```
 
 - The limits seem OK, but has the *shape* of the data distribution changed?
 - The **variance of the dataset should be unchanged.**
 
 ```python
-print('std dev before and after:', numpy.std(data), numpy.std(centred))
+print('std dev before and after:', np.std(data), np.std(centred))
 ```
 
 - The range and variance are as expected, but the mean is not quite `0.0`
@@ -3118,9 +3161,9 @@ print('std dev before and after:', numpy.std(data), numpy.std(centred))
 - **ADD DOCSTRING TO EXISTING FUNCTION AND RUN CELL**
 
 ```python
-def centre(data, desired):
-    """Returns the array in data, recentered around the desired value."""
-    return (data - numpy.mean(data)) + desired
+def centre(data, value):
+    """Returns the array in data, recentered around the value."""
+    return (data - np.mean(data)) + value
 ```
 
 - **RESTART KERNEL AND RUN ALL**
@@ -3152,18 +3195,41 @@ help(centre)
 - **ADD EXTRA DOCUMENTATION**
 
 ```python
-def centre(data, desired):
-    """Returns the array in data, recentred around the desired value.
+def centre(data, value):
+    """Returns the array in data, recentred around value
+
+    Parameters
+    ----------
+    data : array-like
+           Array containing numbers where recentring is desired
+
+    value : float
+            The new desired mean of the array
 
     Example
     -------
     >>> centre([1, 2, 3], 0)
-    [-1, 0, 1]
+    array([-1.,  0.,  1.])
     """
-    return (data - numpy.mean(data)) + desired
+    return (data - np.mean(data)) + value
 ```
 
 - **DEMONSTRATE THE CHANGE**
+
+- Introduce `doctest`
+    - If docstrings are written in this way, the `doctest` module can check that the function works:
+
+```python
+import doctest
+doctest.testmod()
+```
+
+- To see what's being tested:
+
+```python
+import doctest
+doctest.testmod(verbose=True)
+```
 
 ----
 
@@ -3179,25 +3245,33 @@ array([-1.,  0.,  1.])
 centre([1, 2, 3])
 ---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
-<ipython-input-13-9131fef8e3dc> in <module>()
+<ipython-input-24-ecb6901b3ed0> in <module>
 ----> 1 centre([1, 2, 3])
 
-TypeError: centre() missing 1 required positional argument: 'desired'
+TypeError: centre() missing 1 required positional argument: 'value'
 ```
 
 - We **can set a *default* value for function arguments** when we define the function
 - Set defaults **by assigning a value in the function declaration**, as follows:
 
 ```python
-def centre(data, desired=0.0):
-    """Returns the array in data, recentred around the desired value.
+def centre(data, value=0.0):
+    """Returns the array in data, recentred around value
+
+    Parameters
+    ----------
+    data : array-like
+           Array containing numbers where recentring is desired
+
+    value : float
+            The new desired mean of the array
 
     Example
     -------
     >>> centre([1, 2, 3], 0)
-    [-1, 0, 1]
+    array([-1.,  0.,  1.])
     """
-    return (data - numpy.mean(data)) + desired
+    return (data - np.mean(data)) + value
 ```
 
 - The change we've made is to set `desired=0.0` in the function *prototype*.
@@ -3207,45 +3281,9 @@ def centre(data, desired=0.0):
 centre([1, 2, 3])
 ```
 
-
-
-
-----
-
-**SLIDE** Create a new notebook
-
-- **New notebook called `testing`**
-- **ADD AN INTRO IN MARKDOWN**
-
-```markdown
-# Testing and Documentation
-
-When writing a function, we should
-
-- test output for correctness
-- document the expected function
-```
-
-- **ADD IMPORTS**
-
-```python
-import numpy
-```
-
-- **Write the test function**
-- When doing some analyses, such as PCA, we might want to recentre and normalise our dataset.
-- Let's write a function to recentre an array of data, like the inflammation data.
-
-```python
-def centre(data, desired):
-    return (data - np.mean(data)) + desired
-```
-
 ----
 
 **SLIDE** Exercise 10 (10min)
-
-- **MOVE SLIDES TO THE SCREEN**
 
 ```python
 def rescale(data):
@@ -3258,26 +3296,8 @@ def rescale(data):
 ![progress check](images/red_green_sticky.png)
 
 ----
-**SLIDE** Errors and exceptions
 
-- **MOVE NOTEBOOK TO THE SCREEN**
-
-----
-**SLIDE** Create a new notebook
-
-- **Call the notebook `errors`**
-- **ADD AN INTRO**
-
-```markdown
-# Errors and Exceptions
-
-`Python` provides useful error reports of what has gone wrong, which can help with debugging.
-```
-
-
-----
-
-## SECTION 15: Errors
+## SECTION 15: Errors and Exceptions
 
 ----
 
@@ -3321,7 +3341,7 @@ def favourite_ice_cream():
 
 - **NEW CELL**
 
-```
+```python
 favourite_ice_cream()
 ```
 
@@ -3332,16 +3352,15 @@ favourite_ice_cream()
 ```python
 ---------------------------------------------------------------------------
 IndexError                                Traceback (most recent call last)
-<ipython-input-4-8f18c934933f> in <module>()
+<ipython-input-2-713948c7cbba> in <module>
 ----> 1 favourite_ice_cream()
 
-<ipython-input-3-3f8910a0f7ad> in favourite_ice_cream()
-      3                   "vanilla",
-      4                   "strawberry"]
-----> 5     print(ice_creams[3])
+<ipython-input-1-d5749f56e901> in favourite_ice_cream()
+      1 def favourite_ice_cream():
+      2     ice_creams = ["chocolate", "vanilla", "strawberry"]
+----> 3     print(ice_creams[3])
 
 IndexError: list index out of range
-
 ```
 
 - **TALK THROUGH THE TRACEBACK IN THE NOTEBOOK**
@@ -3351,11 +3370,11 @@ IndexError: list index out of range
 
 - The first step has an arrow, showing where we were when the error happened. We were calling the `favourite_ice_cream()` function
 
-- The second step tells us that we were *in* the `favourite_ice_cream()` function
+- The second step tells us that we were *in* the `favourite_ice_cream()` function when the error happened
   - The second step also points to the line `print(ice_creams[3])`, which is where the error occurs
   - This is also the last step, and the precise error is shown on the final line: `IndexError: list index out of range`
 
-- Together, this tells us that we have made an index error in the line `print(ice_creams[3])`, and by looking we can see that we've tried to use an index outside the length of the list.
+- Together, this tells us that we have made an index error in the line `print(ice_creams[3])`, and by looking we can see that we've tried to use an index outside the length of the list. (`ice_creams[3]` refers to the fourth element, not the third - there are only three elements)
 
 ----
 
@@ -3381,7 +3400,7 @@ def some_function()
 **SLIDE** Syntax traceback
 
 ```python
-  File "<ipython-input-6-bef8c18baffa>", line 1
+  File "<ipython-input-3-95d391d879b2>", line 1
     def some_function()
                        ^
 SyntaxError: invalid syntax
@@ -3412,7 +3431,7 @@ def some_function():
 **SLIDE** Not quite
 
 ```python
-  File "<ipython-input-7-b32ba7f38b6b>", line 4
+  File "<ipython-input-4-18d6e2304f63>", line 4
     return msg
     ^
 IndentationError: unexpected indent
@@ -3422,6 +3441,8 @@ IndentationError: unexpected indent
 
 - We don't learn about all the syntax errors at one time - `Python` gives up after the first one it finds
   - **(fixing the first error in a file might correct all subsequent errors)**
+
+- **CORRECT ERROR AND MOVE ON**
 
 ----
 
@@ -3456,7 +3477,6 @@ for i in range(3):
 ```
 
 - **This still gives us a name error**
-
 
 ```python
  ---------------------------------------------------------------------------
@@ -3496,7 +3516,7 @@ IndexError: list index out of range
 
 ----
 
-**SLIDE** Exercise 11 (10min)
+**SLIDE** Exercise 11 (5min)
 
 - **PUT SLIDES ON SCREEN**
 
@@ -3652,7 +3672,7 @@ AssertionError: Data should only contain positive values
 
 - The **traceback tells us there is an `AssertionError` and highlights which *assertion* failed.**
   - The assertion is a check that the code **behaves how *we* expect**
-  - It can be valid Python, and not throw an error, but it might not be what we want
+  - A program can be valid Python, and not throw a logic error, but it still might not give the output that we want
 
 ----
 

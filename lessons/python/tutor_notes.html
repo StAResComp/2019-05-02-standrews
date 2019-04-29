@@ -407,7 +407,7 @@ blockquote {
 <li><a href="#section-12-refactoring">SECTION 12: Refactoring</a></li>
 <li><a href="#section-13-command-line-programs">SECTION 13: Command-line programs</a></li>
 <li><a href="#section-14-testing-and-documentation">SECTION 14: Testing and documentation</a></li>
-<li><a href="#section-15-errors">SECTION 15: Errors</a></li>
+<li><a href="#section-15-errors-and-exceptions">SECTION 15: Errors and Exceptions</a></li>
 <li><a href="#section-16-defensive-programming">SECTION 16: Defensive programming</a></li>
 </ul>
 <!-- /TOC -->
@@ -433,7 +433,7 @@ blockquote {
 <li>Programming is a way to <strong>solve problems in your research</strong> through making a computer do work <strong>quickly</strong> and <strong>accurately</strong></li>
 <li>You'll build <strong>functions</strong> that do specific, defined tasks</li>
 <li>You'll <strong>automate</strong> those functions to perform tasks over and over again (in various combinations)</li>
-<li>You'll <strong>manipulate data</strong>, which is at the heart of all academia</li>
+<li>You'll <strong>manipulate data</strong>, which is at the heart of all research</li>
 <li>You'll learn some <strong>file input/output</strong> to make the computer read and write useful information</li>
 <li>You'll learn some <strong>data structures</strong>, which are ways to organise data so that the computer can deal with it efficiently</li>
 </ul>
@@ -2620,40 +2620,40 @@ files = []
 <ul>
 <li>Is day zero value 0, and day 20 value 20?</li>
 </ul>
-<pre class="hljs"><code><div>$ nano analyse_files.py
+<pre class="hljs"><code><div>nano analyse_files.py
 </div></code></pre>
 <ul>
 <li><strong>ADD TO EXISTING CODE BEFORE CREATING FIGURE</strong></li>
 </ul>
 <pre class="hljs"><code><div>    <span class="hljs-comment"># Test for suspicious maxima</span>
-    <span class="hljs-keyword">if</span> np.max(data, axis=<span class="hljs-number">0</span>)[<span class="hljs-number">0</span>] == <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> np.max(data, axis=<span class="hljs-number">0</span>)[<span class="hljs-number">20</span>] == <span class="hljs-number">20</span>:
+    <span class="hljs-keyword">if</span> numpy.max(data, axis=<span class="hljs-number">0</span>)[<span class="hljs-number">0</span>] == <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> numpy.max(data, axis=<span class="hljs-number">0</span>)[<span class="hljs-number">20</span>] == <span class="hljs-number">20</span>:
         print(<span class="hljs-string">"Suspicious-looking maxima!"</span>)
 </div></code></pre>
 <ul>
 <li><strong>RUN SCRIPT</strong></li>
 </ul>
-<pre class="hljs"><code><div>$ python analyse_files.py
+<pre class="hljs"><code><div>python analyse_files.py
 </div></code></pre>
 <hr>
 <p><strong>SLIDE</strong> SUSPICIOUS MINIMA</p>
 <ul>
 <li>Are all the minima zero? (do they sum to zero?)</li>
 </ul>
-<pre class="hljs"><code><div>$ nano analyse_files.py
+<pre class="hljs"><code><div>nano analyse_files.py
 </div></code></pre>
 <ul>
 <li><strong>ADD TO EXISTING CODE BEFORE CREATING FIGURE</strong></li>
 </ul>
 <pre class="hljs"><code><div>    <span class="hljs-comment"># Test for suspicious maxima</span>
-    <span class="hljs-keyword">if</span> np.max(data, axis=<span class="hljs-number">0</span>)[<span class="hljs-number">0</span>] == <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> np.max(data, axis=<span class="hljs-number">0</span>)[<span class="hljs-number">20</span>] == <span class="hljs-number">20</span>:
+    <span class="hljs-keyword">if</span> numpy.max(data, axis=<span class="hljs-number">0</span>)[<span class="hljs-number">0</span>] == <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> numpy.max(data, axis=<span class="hljs-number">0</span>)[<span class="hljs-number">20</span>] == <span class="hljs-number">20</span>:
         print(<span class="hljs-string">"Suspicious-looking maxima!"</span>)
-    <span class="hljs-keyword">elif</span> np.sum(data.min(axis=<span class="hljs-number">0</span>)) == <span class="hljs-number">0</span>:
-        print(<span class="hljs-string">'Minima sum to zero!'</span>)
+    <span class="hljs-keyword">elif</span> numpy.sum(numpy.min(data, axis=<span class="hljs-number">0</span>)) == <span class="hljs-number">0</span>:
+        print(<span class="hljs-string">"Minima sum to zero!"</span>)
 </div></code></pre>
 <ul>
 <li><strong>RUN SCRIPT</strong></li>
 </ul>
-<pre class="hljs"><code><div>$ python analyse_files.py
+<pre class="hljs"><code><div>python analyse_files.py
 </div></code></pre>
 <hr>
 <p><strong>SLIDE</strong> BEING TIDY</p>
@@ -2669,18 +2669,25 @@ files = []
 </li>
 </ul>
 <pre class="hljs"><code><div>    <span class="hljs-comment"># Test for suspicious maxima</span>
-    <span class="hljs-keyword">if</span> np.max(data, axis=<span class="hljs-number">0</span>)[<span class="hljs-number">0</span>] == <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> np.max(data, axis=<span class="hljs-number">0</span>)[<span class="hljs-number">20</span>] == <span class="hljs-number">20</span>:
+    <span class="hljs-keyword">if</span> numpy.max(data, axis=<span class="hljs-number">0</span>)[<span class="hljs-number">0</span>] == <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> numpy.max(data, axis=<span class="hljs-number">0</span>)[<span class="hljs-number">20</span>] == <span class="hljs-number">20</span>:
         print(<span class="hljs-string">"Suspicious-looking maxima!"</span>)
-    <span class="hljs-keyword">elif</span> np.sum(data.min(axis=<span class="hljs-number">0</span>)) == <span class="hljs-number">0</span>:
-        print(<span class="hljs-string">'Minima sum to zero!'</span>)
+    <span class="hljs-keyword">elif</span> numpy.sum(numpy.min(data, axis=<span class="hljs-number">0</span>)) == <span class="hljs-number">0</span>:
+        print(<span class="hljs-string">"Minima sum to zero!"</span>)
     <span class="hljs-keyword">else</span>:
-        print(<span class="hljs-string">'Seems OK!'</span>)
+        print(<span class="hljs-string">"Seems OK!"</span>)
 </div></code></pre>
 <ul>
 <li><strong>RUN SCRIPT</strong></li>
 </ul>
-<pre class="hljs"><code><div>$ python analyse_files.py
+<pre class="hljs"><code><div>python analyse_files.py
 </div></code></pre>
+<ul>
+<li>Nothing seems OK.
+<ul>
+<li>Pretty usual for research, I'd say.</li>
+</ul>
+</li>
+</ul>
 <p><img src="images/red_green_sticky.png" alt="progress check"></p>
 <hr>
 <h2 id="section-09-conclusions-part-1">SECTION 09: Conclusions (Part 1)</h2>
@@ -2691,7 +2698,7 @@ files = []
 <li>variables</li>
 <li>data types: arrays, lists, strings, numbers</li>
 <li>file IO: loading data, listing files, manipulating filenames</li>
-<li>calculating statistics</li>
+<li>computing statistics</li>
 <li>plotting data: plots and subplots</li>
 <li>program flow: loops and conditionals</li>
 <li>automating multiple analyses</li>
@@ -2727,11 +2734,12 @@ files = []
 </li>
 </ul>
 <hr>
-<p><strong>SLIDE</strong> XKCD</p>
+<p><strong>SLIDE</strong> XKCD: writing good code</p>
 <ul>
 <li>Again, this slide is only a little bit flippant</li>
 <li><em>No-one</em> writes perfect code, first time
 <ul>
+<li>Everyone thinks their code could be better</li>
 <li>It's all about revision, and good practice: <strong>defensive programming</strong></li>
 <li>These principles will make your life, and other people's lives, much easier</li>
 </ul>
@@ -2747,23 +2755,23 @@ files = []
 <p>Change directory to desktop (in terminal or Explorer)</p>
 </li>
 <li>
-<p>Change your working directory to <code>python-novice-inflammation</code> (from yesterday/earlier)</p>
+<p>Change your working directory to <code>pni</code> (from yesterday/earlier)</p>
 </li>
 </ul>
-<pre class="hljs"><code><div>$ <span class="hljs-built_in">cd</span> ~/Desktop
-$ <span class="hljs-built_in">cd</span> python-novice-inflammation
+<pre class="hljs"><code><div><span class="hljs-built_in">cd</span> ~/Desktop
+<span class="hljs-built_in">cd</span> pni
 </div></code></pre>
 <p><img src="images/red_green_sticky.png" alt="progress check"></p>
 <hr>
-<p>## SECTION 10: <code>Jupyter</code> notebooks</p>
+<h2 id="section-10-jupyter-notebooks">SECTION 10: <code>Jupyter</code> notebooks</h2>
 <hr>
 <p><strong>SLIDE</strong> Starting <code>Jupyter</code></p>
 <ul>
-<li>Make sure you're in the project directory <code>python-novice-inflammation</code></li>
+<li>Make sure you're in the project directory <code>pni</code></li>
 <li><strong>Start <code>Jupyter</code></strong> from the command-line</li>
 <li><strong>CHECK WHETHER EVERYONE SEES A WORKING JUPYTER NOTEBOOK</strong></li>
 </ul>
-<pre class="hljs"><code><div>$ jupyter notebook
+<pre class="hljs"><code><div>jupyter notebook
 </div></code></pre>
 <p><img src="images/red_green_sticky.png" alt="progress check"></p>
 <hr>
@@ -2853,12 +2861,36 @@ Functions are pieces of code that take an input and return an output. They enabl
 As an example in <span class="hljs-code">`Python`</span>, we will create a function that converts temperature between <span class="hljs-emphasis">*Fahrenheit*</span> and <span class="hljs-emphasis">*Kelvin*</span> scales.
 </div></code></pre>
 <hr>
-<p>## SECTION 11: Functions</p>
+<p><strong>SLIDE</strong> Entering code</p>
+<ul>
+<li>We can <strong>enter code directly into a code cell and run it</strong></li>
+</ul>
+<pre class="hljs"><code><div>print(<span class="hljs-number">3</span> + <span class="hljs-number">5</span>)
+</div></code></pre>
+<ul>
+<li>
+<p>The output appears beneath the code cell.</p>
+</li>
+<li>
+<p>To <strong>edit a cell that has already been run, double-click on it (DEMONSTRATE)</strong></p>
+<ul>
+<li>We'll write some new <code>Python</code> code in the cell</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fahr_to_kelvin</span><span class="hljs-params">(temp)</span>:</span>
+    <span class="hljs-keyword">return</span> ((temp - <span class="hljs-number">32</span>) * (<span class="hljs-number">5</span> / <span class="hljs-number">9</span>)) + <span class="hljs-number">273.15</span>
+</div></code></pre>
+<ul>
+<li>This code is a <strong>FUNCTION</strong></li>
+</ul>
+<hr>
+<h2 id="section-11-functions">SECTION 11: Functions</h2>
 <hr>
 <p><strong>SLIDE</strong> Motivation</p>
 <ul>
 <li>
-<p>We wrote some code that plots values of interest from multiple datasets</p>
+<p>We wrote some code that quickly analyses and plots values of interest from multiple datasets</p>
 <ul>
 <li><strong>but that code is long and complicated</strong></li>
 </ul>
@@ -2873,6 +2905,7 @@ As an example in <span class="hljs-code">`Python`</span>, we will create a funct
 <p><strong>SO</strong> we will package our code for reuse.</p>
 <ul>
 <li><strong>We do this by writing functions</strong></li>
+<li>Functions are a shorthand way of re-executing longer pieces of code.</li>
 </ul>
 </li>
 </ul>
@@ -2917,11 +2950,16 @@ As an example in <span class="hljs-code">`Python`</span>, we will create a funct
 <ul>
 <li>The function <strong>performs a calculation, which is <em>returned</em> by the <code>return</code> statement</strong>.</li>
 <li>The value of <strong>the variable <code>temp</code> is taken through the same calculation as in the mathematical function</strong>, and is then <em>return</em>ed.</li>
+</ul>
+</li>
+<li>
+<p>The formal definition of this in <code>Python</code> has some required components:</p>
+<ul>
 <li>Functions are <em>defined</em> by the <code>def</code> keyword</li>
 <li>The name of the function follows the <code>def</code> keyword (equivalent to <code>f</code> in the mathematical example)</li>
 <li>The first line ends in a colon, just like a <code>for</code> loop or <code>if</code> statement.</li>
-<li>The code, or <em>body</em> of the function is indented, just like a <code>for</code> loop or <code>if</code> statement.</li>
-<li>The <em>parameters</em> or <em>inputs</em> to the function are then defined in parentheses. These get a variable name <strong>which only exists within the function</strong>. Here, there is one parameter, called <code>temp</code>.</li>
+<li>The code, or <em>body</em> of the function is indented as a <strong>code block</strong>, just like a <code>for</code> loop or <code>if</code> statement.</li>
+<li>The <em>arguments</em> or <em>inputs</em> to the function are then defined in parentheses. These are variables and get a variable name <strong>which only exists within the function</strong>. Here, there is one argument, called <code>temp</code>.</li>
 </ul>
 </li>
 </ul>
@@ -2975,7 +3013,7 @@ print(temp_c)
 <hr>
 <p><strong>SLIDE</strong> New functions from old</p>
 <ul>
-<li>**ASK LEARNERS HOW WE CAN TURN THIS INTO A NEW FUNCTION: <code>fahr_to_celsius()</code>:</li>
+<li><strong>ASK LEARNERS HOW WE CAN TURN THIS INTO A NEW FUNCTION: <code>fahr_to_celsius()</code></strong>:</li>
 </ul>
 <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fahr_to_celsius</span><span class="hljs-params">(temp_f)</span>:</span>
     <span class="hljs-keyword">return</span> kelvin_to_celsius(fahr_to_kelvin(temp_f))
@@ -2986,10 +3024,15 @@ print(temp_c)
 <pre class="hljs"><code><div>print(<span class="hljs-string">'freezing point of water in Celsius:'</span>, fahr_to_celsius(<span class="hljs-number">32.0</span>))
 </div></code></pre>
 <ul>
-<li><strong>THIS IS HOW PROGRAMS ARE BUILT: COMBINING SMALL CHUNKS OF CODE INTO LARGER BITS UNTIL WE GET THE RESULT WE WANT</strong></li>
+<li><strong>THIS IS HOW PROGRAMS ARE BUILT</strong>:
+<ul>
+<li>Write small functions that do one thing well (and correctly)</li>
+<li>Combine the small functions into larger functions until we have the result we need</li>
+</ul>
+</li>
 </ul>
 <hr>
-<p><strong>SLIDE</strong> Exercise 08 (10min)</p>
+<p><strong>SLIDE</strong> Exercise 08 (5min)</p>
 <ul>
 <li><strong>SHOW THE SLIDES FOR THE EXERCISE</strong></li>
 </ul>
@@ -3007,7 +3050,7 @@ print(temp_c)
 </ul>
 <pre class="hljs"><code><div><span class="hljs-section">## Function scope</span>
 
-Variables defined within a function (including parameters) are not available outside the function unless they are returned.
+Variables defined within a function (including arguments) are not available outside the function unless they are returned.
 </div></code></pre>
 <ul>
 <li>
@@ -3063,7 +3106,7 @@ a = my_fn(a)
 print(a)
 </div></code></pre>
 <hr>
-<p><strong>SLIDE</strong> Exercise 09 (5min)</p>
+<p><strong>SLIDE</strong> Exercise 09 (1min)</p>
 <ul>
 <li>
 <p><strong>PUT THE SLIDES ON SCREEN</strong></p>
@@ -3076,7 +3119,7 @@ print(a)
 </li>
 </ul>
 <hr>
-<p>## SECTION 12: Refactoring</p>
+<h2 id="section-12-refactoring">SECTION 12: Refactoring</h2>
 <hr>
 <p><strong>SLIDE</strong> Tidying up</p>
 <ul>
@@ -3119,16 +3162,16 @@ print(a)
 <p><strong>OPEN EDITOR AND CHANGE CODE</strong></p>
 </li>
 </ul>
-<pre class="hljs"><code><div>$ nano analyse_files.py
+<pre class="hljs"><code><div>nano analyse_files.py
 </div></code></pre>
 <pre class="hljs"><code><div><span class="hljs-comment"># Detect problems with a dataset</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">detect_problems</span><span class="hljs-params">(data)</span>:</span>
-    <span class="hljs-keyword">if</span> np.max(data, axis=<span class="hljs-number">0</span>)[<span class="hljs-number">0</span>] == <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> np.max(data, axis=<span class="hljs-number">0</span>)[<span class="hljs-number">20</span>] == <span class="hljs-number">20</span>:
+    <span class="hljs-keyword">if</span> numpy.max(data, axis=<span class="hljs-number">0</span>)[<span class="hljs-number">0</span>] == <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> numpy.max(data, axis=<span class="hljs-number">0</span>)[<span class="hljs-number">20</span>] == <span class="hljs-number">20</span>:
         print(<span class="hljs-string">"Suspicious-looking maxima!"</span>)
-    <span class="hljs-keyword">elif</span> np.sum(data.min(axis=<span class="hljs-number">0</span>)) == <span class="hljs-number">0</span>:
-        print(<span class="hljs-string">'Minima sum to zero!'</span>)
+    <span class="hljs-keyword">elif</span> numpy.sum(numpy.min(data, axis=<span class="hljs-number">0</span>)) == <span class="hljs-number">0</span>:
+        print(<span class="hljs-string">"Minima sum to zero!"</span>)
     <span class="hljs-keyword">else</span>:
-        print(<span class="hljs-string">'Seems OK!'</span>)
+        print(<span class="hljs-string">"Seems OK!"</span>)
 
 <span class="hljs-comment"># Analyse each file in turn</span>
 <span class="hljs-keyword">for</span> fname <span class="hljs-keyword">in</span> files:
@@ -3143,48 +3186,49 @@ print(a)
 <ul>
 <li><strong>SAVE AND RUN SCRIPT</strong></li>
 </ul>
-<pre class="hljs"><code><div>$ python analyse_files.py
+<pre class="hljs"><code><div>python analyse_files.py
 </div></code></pre>
 <hr>
 <p><strong>SLIDE</strong> <code>plot_data()</code></p>
 <ul>
 <li>We'll write <strong>a function that plots the data</strong></li>
 </ul>
-<pre class="hljs"><code><div><span class="hljs-comment"># Plot passed data in the specified file</span>
+<pre class="hljs"><code><div><span class="hljs-comment"># plot data in a file</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">plot_data</span><span class="hljs-params">(data, fname)</span>:</span>
-    <span class="hljs-comment"># create figure and three axes</span>
-    fig = plt.figure(figsize=(<span class="hljs-number">10.0</span>, <span class="hljs-number">3.0</span>))
+    fig = matplotlib.pyplot.figure(figsize=(<span class="hljs-number">10.0</span>, <span class="hljs-number">3.0</span>))
     axes1 = fig.add_subplot(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>)
     axes2 = fig.add_subplot(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>)
     axes3 = fig.add_subplot(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>)
 
     <span class="hljs-comment"># decorate the axes</span>
-    axes1.set_ylabel(<span class="hljs-string">'average'</span>)
-    axes2.set_ylabel(<span class="hljs-string">'maximum'</span>)
-    axes3.set_ylabel(<span class="hljs-string">'minimum'</span>)
+    axes1.set_ylabel(<span class="hljs-string">"mean"</span>)
+    axes2.set_ylabel(<span class="hljs-string">"maximum"</span>)
+    axes3.set_ylabel(<span class="hljs-string">"minimum"</span>)
 
-    <span class="hljs-comment"># plot the data</span>
-    axes1.plot(data.mean(axis=<span class="hljs-number">0</span>))
-    axes2.plot(data.max(axis=<span class="hljs-number">0</span>))
-    axes3.plot(data.min(axis=<span class="hljs-number">0</span>))
+    <span class="hljs-comment"># plot data</span>
+    axes1.plot(numpy.mean(data, axis=<span class="hljs-number">0</span>))
+    axes2.plot(numpy.max(data, axis=<span class="hljs-number">0</span>))
+    axes3.plot(numpy.min(data, axis=<span class="hljs-number">0</span>))
 
-    <span class="hljs-comment"># tidy plot and render</span>
+    <span class="hljs-comment"># tidy and show plot</span>
     fig.tight_layout()
-    print(<span class="hljs-string">'Writing image to'</span>, imgname)
-    plt.savefig(imgname)
+
+    <span class="hljs-comment"># save image to file</span>
+    print(<span class="hljs-string">"Writing image to"</span>, fname)
+    matplotlib.pyplot.savefig(fname)
 
 <span class="hljs-comment"># Analyse each file in turn</span>
 <span class="hljs-keyword">for</span> fname <span class="hljs-keyword">in</span> files:
     print(<span class="hljs-string">"Analysing"</span>, fname)
 
-    <span class="hljs-comment"># load data</span>
-    data = np.loadtxt(fname=fname, delimiter=<span class="hljs-string">','</span>)
+    <span class="hljs-comment"># load data from file</span>
+    data = numpy.loadtxt(fname=fname, delimiter=<span class="hljs-string">","</span>)
 
-    <span class="hljs-comment"># identify problems in the data</span>
+    <span class="hljs-comment"># test for suspicious maxima</span>
     detect_problems(data)
 
     <span class="hljs-comment"># plot image in file</span>
-    imgname = fname[:<span class="hljs-number">-4</span>] + <span class="hljs-string">'.png'</span>
+    imgname = fname[:<span class="hljs-number">-4</span>] + <span class="hljs-string">".png"</span>
     plot_data(data, imgname)
 </div></code></pre>
 <hr>
@@ -3229,7 +3273,7 @@ print(a)
 <ul>
 <li><strong>YOU MAY BE ASKING YOURSELF WHY YOU WANT TO BOTHER WITH THIS</strong>
 <ul>
-<li>After 6 months, the referee report arrives and you need to rerun experiments</li>
+<li>After 6 months, the referee's report arrives and you need to rerun experiments</li>
 <li>Another student is continuing the project</li>
 <li>Some random person reads your article and asks for the code</li>
 <li>Helps spot errors quickly</li>
@@ -3255,7 +3299,12 @@ print(a)
 <li>
 <p><strong>Read data from standard input</strong> in a program so that it can be used in a pipeline (with <em>pipes</em>: <code>|</code>)</p>
 </li>
+<li>
+<p><strong>RUN EXAMPLE</strong></p>
+</li>
 </ul>
+<pre class="hljs"><code><div>python code/readings_04.py --mean data/inflammation<span class="hljs-number">-01.</span>csv
+</div></code></pre>
 <hr>
 <p><strong>SLIDE</strong> The <code>sys</code> module</p>
 <ul>
@@ -3274,7 +3323,7 @@ print(a)
 </ul>
 </li>
 </ul>
-<pre class="hljs"><code><div>$ nano sys_version.py
+<pre class="hljs"><code><div>nano sys_version.py
 </div></code></pre>
 <ul>
 <li><strong>Enter the code below</strong></li>
@@ -3302,7 +3351,7 @@ version is 3.6.3 |Anaconda custom (64-bit)| (default, Oct  6 2017, 12:04:38)
 <p><strong>Open a new file called <code>sys_argv.py</code> in the editor</strong></p>
 </li>
 </ul>
-<pre class="hljs"><code><div>$ nano sys_argv.py
+<pre class="hljs"><code><div>nano sys_argv.py
 </div></code></pre>
 <ul>
 <li><strong>Enter the code below</strong></li>
@@ -3315,8 +3364,8 @@ print(<span class="hljs-string">'sys.argv is'</span>, sys.argv)
 </ul>
 <pre class="hljs"><code><div>$ python sys_argv.py
 sys.argv is [<span class="hljs-string">'sys_argv.py'</span>]
-$ python sys_argv.py item1 item2 somefile.txt
-sys.argv is [<span class="hljs-string">'sys_argv.py'</span>, <span class="hljs-string">'item1'</span>, <span class="hljs-string">'item2'</span>, <span class="hljs-string">'somefile.txt'</span>]
+$ python sys_argv.py file1 file2 somefile.txt --option -i input_file.csv
+sys.argv is [<span class="hljs-string">'sys_argv.py'</span>, <span class="hljs-string">'file1'</span>, <span class="hljs-string">'file2'</span>, <span class="hljs-string">'somefile.txt'</span>, <span class="hljs-string">'--option'</span>, <span class="hljs-string">'-i'</span>, <span class="hljs-string">'input_file.csv'</span>]
 </div></code></pre>
 <ul>
 <li>The <strong>name of the script is always the first element: <code>sys.argv[0]</code></strong></li>
@@ -3324,9 +3373,18 @@ sys.argv is [<span class="hljs-string">'sys_argv.py'</span>, <span class="hljs-s
 <hr>
 <p><strong>SLIDE</strong> Building a new script</p>
 <ul>
-<li>We're going to build a script that <strong>reports readings from data files</strong></li>
+<li>
+<p>We're going to build a script that <strong>reports readings from data files</strong></p>
+<ul>
+<li>We're going to think about how it works before we build it</li>
+<li>(<strong>This is generally a good idea when programming</strong>)</li>
 </ul>
-<pre class="hljs"><code><div>$ python readings.py mydata.csv
+</li>
+<li>
+<p>We want an argument to be the file containing the experimental data</p>
+</li>
+</ul>
+<pre class="hljs"><code><div>python readings.py mydata.csv
 </div></code></pre>
 <ul>
 <li>We will make it <strong>take options</strong> <code>--min</code>, <code>--max</code>, <code>--mean</code>
@@ -3335,17 +3393,21 @@ sys.argv is [<span class="hljs-string">'sys_argv.py'</span>, <span class="hljs-s
 </ul>
 </li>
 </ul>
-<pre class="hljs"><code><div>$ python readings.py --min mydata.csv
+<pre class="hljs"><code><div>python readings.py --min mydata.csv
 </div></code></pre>
 <ul>
 <li>We will make it <strong>handle multiple files</strong></li>
 </ul>
-<pre class="hljs"><code><div>$ python readings.py --min mydata.csv myotherdata.csv
+<pre class="hljs"><code><div>python readings.py --min mydata.csv myotherdata.csv
 </div></code></pre>
 <ul>
-<li>We will make it take <code>STDIN</code> so we can <strong>use it with <em>pipes</em></strong></li>
+<li>We will make it take <code>STDIN</code> so we can <strong>use it with <em>pipes</em></strong>
+<ul>
+<li>(like you learned in the <code>bash</code>/<code>shell</code> lesson)</li>
 </ul>
-<pre class="hljs"><code><div>$ python readings.py --min &lt; mydata.csv
+</li>
+</ul>
+<pre class="hljs"><code><div>python readings.py --min &lt; mydata.csv
 </div></code></pre>
 <hr>
 <p><strong>SLIDE</strong> Starting the framework</p>
@@ -3354,13 +3416,14 @@ sys.argv is [<span class="hljs-string">'sys_argv.py'</span>, <span class="hljs-s
 <p>We start with a script that doesn't do all that</p>
 <ul>
 <li>We'll <strong>build features in one-by-one</strong></li>
+<li>(also a good idea when programming)</li>
 </ul>
 </li>
 <li>
 <p><strong>Create a new file called <code>readings.py</code> in the editor</strong></p>
 </li>
 </ul>
-<pre class="hljs"><code><div>$ nano readings.py
+<pre class="hljs"><code><div>nano readings.py
 </div></code></pre>
 <ul>
 <li><strong>Add the code below and explain</strong>
@@ -3387,7 +3450,7 @@ sys.argv is [<span class="hljs-string">'sys_argv.py'</span>, <span class="hljs-s
 <ul>
 <li><strong>Run the script</strong></li>
 </ul>
-<pre class="hljs"><code><div>$ python readings.py
+<pre class="hljs"><code><div>python readings.py
 </div></code></pre>
 <ul>
 <li><strong>NOTHING HAPPENS - WHY?</strong>
@@ -3400,10 +3463,10 @@ sys.argv is [<span class="hljs-string">'sys_argv.py'</span>, <span class="hljs-s
 <p><strong>SLIDE</strong> Calling a script</p>
 <ul>
 <li>
-<p><strong>There's a way to tell if a <code>Python</code> file is being run as a script</strong></p>
+<p><strong>A <code>Python</code> file can tell is being run as a script</strong></p>
 </li>
 <li>
-<p>If we use this, we can use the same file as:</p>
+<p>If we do this, we can use the same file as:</p>
 <ul>
 <li>a module (<code>import readings</code>)</li>
 <li>a script (<code>$ python readings.py</code>)</li>
@@ -3485,9 +3548,13 @@ data/small-01.csv
 <hr>
 <p><strong>SLIDES</strong> Handling flags</p>
 <ul>
-<li><strong>We want to use <code>--min</code>, <code>--max</code>, <code>--mean</code> to tell the script what to calculate</strong></li>
+<li><strong>We want to use <em>flags</em> <code>--min</code>, <code>--max</code>, <code>--mean</code> to tell the script what to calculate</strong>
+<ul>
+<li>A <em>flag</em> starts with two hyphens, here</li>
 </ul>
-<pre class="hljs"><code><div>$ python readings.py --max myfile.csv
+</li>
+</ul>
+<pre class="hljs"><code><div>python readings.py --max myfile.csv
 </div></code></pre>
 <ul>
 <li>
@@ -3536,7 +3603,7 @@ NameError: name <span class="hljs-string">'process'</span> is not defined
 Action <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> one of --min, --mean, <span class="hljs-keyword">or</span> --max: --std
 </div></code></pre>
 <ul>
-<li><strong>We have a useful error message</strong></li>
+<li>Even though we haven't quite completed the script, <strong>we have a useful error message</strong></li>
 </ul>
 <hr>
 <p><strong>SLIDE</strong> Add <code>process()</code></p>
@@ -3549,7 +3616,7 @@ Action <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span
 </ul>
 </li>
 <li>
-<p>**Add the code to <code>readings.py</code></p>
+<p><strong>Add the code to <code>readings.py</code></strong></p>
 </li>
 </ul>
 <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">process</span><span class="hljs-params">(filename, action)</span>:</span>
@@ -3623,7 +3690,11 @@ $ python readings.py --mean &lt; data/small-01.csv
 <hr>
 <p><strong>SLIDE</strong> Motivation</p>
 <ul>
-<li>Once a useful function is written, it gets reused over and over, often without further checking</li>
+<li>Once a useful function is written, it gets reused over and over, often without further checking
+<ul>
+<li>There is often an assumption that if other people use a function/bit of code that it works correctly. This may not always be true.</li>
+</ul>
+</li>
 <li>When you write a function you should:
 <ul>
 <li><strong>Test output for correctness</strong></li>
@@ -3670,8 +3741,8 @@ When writing a function, we should
 <p><strong>EXPLAIN THE MATHS IF NECESSARY</strong></p>
 </li>
 </ul>
-<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">centre</span><span class="hljs-params">(data, desired)</span>:</span>
-    <span class="hljs-keyword">return</span> (data - np.mean(data)) + desired
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">centre</span><span class="hljs-params">(data, value)</span>:</span>
+    <span class="hljs-keyword">return</span> (data - np.mean(data)) + value
 </div></code></pre>
 <hr>
 <p><strong>SLIDE</strong> Test datasets</p>
@@ -3693,7 +3764,7 @@ When writing a function, we should
 z
 </div></code></pre>
 <ul>
-<li><strong>Let's recentre the data at the value 2</strong></li>
+<li><strong>Let's recentre the data at the value 3</strong></li>
 </ul>
 <pre class="hljs"><code><div>centre(z, <span class="hljs-number">3.0</span>)
 </div></code></pre>
@@ -3713,36 +3784,37 @@ z
 <pre class="hljs"><code><div>centre(data, <span class="hljs-number">0</span>))
 </div></code></pre>
 <ul>
-<li>This looks OK, but <strong>how would we know it worked?</strong></li>
+<li>
+<p>This looks OK, but <strong>how would we know it worked?</strong></p>
+</li>
+<li>
+<p><strong>ASK LEARNERS HOW THEY COULD VERIFY THE FUNCTION WORKED AS INTENDED</strong></p>
+</li>
 </ul>
 <hr>
 <p><strong>SLIDE</strong> Check properties</p>
 <ul>
-<li>
-<p><strong>ASK LEARNERS HOW THEY COULD VERIFY THE FUNCTION WORKED AS INTENDED</strong></p>
-</li>
-<li>
-<p>We can <strong>check properties of the original and centred data</strong></p>
+<li>We can <strong>check properties of the original and centred data</strong>
 <ul>
 <li><code>mean</code>, <code>min</code>, <code>max</code>, <code>std</code></li>
 </ul>
 </li>
 </ul>
-<pre class="hljs"><code><div>print(<span class="hljs-string">'original min, mean, and max are:'</span>, numpy.min(data), numpy.mean(data), numpy.max(data))
+<pre class="hljs"><code><div>print(<span class="hljs-string">'original min, mean, and max are:'</span>, np.min(data), np.mean(data), np.max(data))
 </div></code></pre>
 <ul>
 <li>We'd expect the <strong>mean of the new dataset to be approximately <code>0.0</code></strong></li>
 <li>Also, the <strong>range (<code>max</code> - <code>min</code>) should be unchanged.</strong></li>
 </ul>
 <pre class="hljs"><code><div>centred = centre(data, <span class="hljs-number">0</span>)
-print(<span class="hljs-string">'min, mean, and max of centered data are:'</span>, numpy.min(centred),
-      numpy.mean(centred), numpy.max(centred))
+print(<span class="hljs-string">'min, mean, and max of centered data are:'</span>, np.min(centred),
+      np.mean(centred), np.max(centred))
 </div></code></pre>
 <ul>
 <li>The limits seem OK, but has the <em>shape</em> of the data distribution changed?</li>
 <li>The <strong>variance of the dataset should be unchanged.</strong></li>
 </ul>
-<pre class="hljs"><code><div>print(<span class="hljs-string">'std dev before and after:'</span>, numpy.std(data), numpy.std(centred))
+<pre class="hljs"><code><div>print(<span class="hljs-string">'std dev before and after:'</span>, np.std(data), np.std(centred))
 </div></code></pre>
 <ul>
 <li>
@@ -3771,9 +3843,9 @@ print(<span class="hljs-string">'min, mean, and max of centered data are:'</span
 <p><strong>ADD DOCSTRING TO EXISTING FUNCTION AND RUN CELL</strong></p>
 </li>
 </ul>
-<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">centre</span><span class="hljs-params">(data, desired)</span>:</span>
-    <span class="hljs-string">"""Returns the array in data, recentered around the desired value."""</span>
-    <span class="hljs-keyword">return</span> (data - numpy.mean(data)) + desired
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">centre</span><span class="hljs-params">(data, value)</span>:</span>
+    <span class="hljs-string">"""Returns the array in data, recentered around the value."""</span>
+    <span class="hljs-keyword">return</span> (data - np.mean(data)) + value
 </div></code></pre>
 <ul>
 <li>
@@ -3812,19 +3884,44 @@ print(<span class="hljs-string">'min, mean, and max of centered data are:'</span
 <p><strong>ADD EXTRA DOCUMENTATION</strong></p>
 </li>
 </ul>
-<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">centre</span><span class="hljs-params">(data, desired)</span>:</span>
-    <span class="hljs-string">"""Returns the array in data, recentred around the desired value.
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">centre</span><span class="hljs-params">(data, value)</span>:</span>
+    <span class="hljs-string">"""Returns the array in data, recentred around value
+
+    Parameters
+    ----------
+    data : array-like
+           Array containing numbers where recentring is desired
+
+    value : float
+            The new desired mean of the array
 
     Example
     -------
     &gt;&gt;&gt; centre([1, 2, 3], 0)
-    [-1, 0, 1]
+    array([-1.,  0.,  1.])
     """</span>
-    <span class="hljs-keyword">return</span> (data - numpy.mean(data)) + desired
+    <span class="hljs-keyword">return</span> (data - np.mean(data)) + value
 </div></code></pre>
 <ul>
-<li><strong>DEMONSTRATE THE CHANGE</strong></li>
+<li>
+<p><strong>DEMONSTRATE THE CHANGE</strong></p>
+</li>
+<li>
+<p>Introduce <code>doctest</code></p>
+<ul>
+<li>If docstrings are written in this way, the <code>doctest</code> module can check that the function works:</li>
 </ul>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> doctest
+doctest.testmod()
+</div></code></pre>
+<ul>
+<li>To see what's being tested:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> doctest
+doctest.testmod(verbose=<span class="hljs-keyword">True</span>)
+</div></code></pre>
 <hr>
 <p><strong>SLIDE</strong> Default arguments</p>
 <ul>
@@ -3840,24 +3937,32 @@ array([<span class="hljs-number">-1.</span>,  <span class="hljs-number">0.</span
 centre([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
 ---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
-&lt;ipython-input<span class="hljs-number">-13</span><span class="hljs-number">-9131</span>fef8e3dc&gt; <span class="hljs-keyword">in</span> &lt;module&gt;()
+&lt;ipython-input<span class="hljs-number">-24</span>-ecb6901b3ed0&gt; <span class="hljs-keyword">in</span> &lt;module&gt;
 ----&gt; <span class="hljs-number">1</span> centre([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
 
-TypeError: centre() missing <span class="hljs-number">1</span> required positional argument: <span class="hljs-string">'desired'</span>
+TypeError: centre() missing <span class="hljs-number">1</span> required positional argument: <span class="hljs-string">'value'</span>
 </div></code></pre>
 <ul>
 <li>We <strong>can set a <em>default</em> value for function arguments</strong> when we define the function</li>
 <li>Set defaults <strong>by assigning a value in the function declaration</strong>, as follows:</li>
 </ul>
-<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">centre</span><span class="hljs-params">(data, desired=<span class="hljs-number">0.0</span>)</span>:</span>
-    <span class="hljs-string">"""Returns the array in data, recentred around the desired value.
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">centre</span><span class="hljs-params">(data, value=<span class="hljs-number">0.0</span>)</span>:</span>
+    <span class="hljs-string">"""Returns the array in data, recentred around value
+
+    Parameters
+    ----------
+    data : array-like
+           Array containing numbers where recentring is desired
+
+    value : float
+            The new desired mean of the array
 
     Example
     -------
     &gt;&gt;&gt; centre([1, 2, 3], 0)
-    [-1, 0, 1]
+    array([-1.,  0.,  1.])
     """</span>
-    <span class="hljs-keyword">return</span> (data - numpy.mean(data)) + desired
+    <span class="hljs-keyword">return</span> (data - np.mean(data)) + value
 </div></code></pre>
 <ul>
 <li>The change we've made is to set <code>desired=0.0</code> in the function <em>prototype</em>.</li>
@@ -3866,36 +3971,7 @@ TypeError: centre() missing <span class="hljs-number">1</span> required position
 <pre class="hljs"><code><div>centre([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
 </div></code></pre>
 <hr>
-<p><strong>SLIDE</strong> Create a new notebook</p>
-<ul>
-<li><strong>New notebook called <code>testing</code></strong></li>
-<li><strong>ADD AN INTRO IN MARKDOWN</strong></li>
-</ul>
-<pre class="hljs"><code><div><span class="hljs-section"># Testing and Documentation</span>
-
-When writing a function, we should
-
-<span class="hljs-bullet">- </span>test output for correctness
-<span class="hljs-bullet">- </span>document the expected function
-</div></code></pre>
-<ul>
-<li><strong>ADD IMPORTS</strong></li>
-</ul>
-<pre class="hljs"><code><div><span class="hljs-keyword">import</span> numpy
-</div></code></pre>
-<ul>
-<li><strong>Write the test function</strong></li>
-<li>When doing some analyses, such as PCA, we might want to recentre and normalise our dataset.</li>
-<li>Let's write a function to recentre an array of data, like the inflammation data.</li>
-</ul>
-<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">centre</span><span class="hljs-params">(data, desired)</span>:</span>
-    <span class="hljs-keyword">return</span> (data - np.mean(data)) + desired
-</div></code></pre>
-<hr>
 <p><strong>SLIDE</strong> Exercise 10 (10min)</p>
-<ul>
-<li><strong>MOVE SLIDES TO THE SCREEN</strong></li>
-</ul>
 <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">rescale</span><span class="hljs-params">(data)</span>:</span>
     <span class="hljs-string">"""Returns input array rescaled to [0.0, 0.1]."""</span>
     l = numpy.min(data)
@@ -3904,22 +3980,7 @@ When writing a function, we should
 </div></code></pre>
 <p><img src="images/red_green_sticky.png" alt="progress check"></p>
 <hr>
-<p><strong>SLIDE</strong> Errors and exceptions</p>
-<ul>
-<li><strong>MOVE NOTEBOOK TO THE SCREEN</strong></li>
-</ul>
-<hr>
-<p><strong>SLIDE</strong> Create a new notebook</p>
-<ul>
-<li><strong>Call the notebook <code>errors</code></strong></li>
-<li><strong>ADD AN INTRO</strong></li>
-</ul>
-<pre class="hljs"><code><div><span class="hljs-section"># Errors and Exceptions</span>
-
-<span class="hljs-code">`Python`</span> provides useful error reports of what has gone wrong, which can help with debugging.
-</div></code></pre>
-<hr>
-<h2 id="section-15-errors">SECTION 15: Errors</h2>
+<h2 id="section-15-errors-and-exceptions">SECTION 15: Errors and Exceptions</h2>
 <hr>
 <p><strong>SLIDE</strong> Create a new notebook</p>
 <ul>
@@ -3971,16 +4032,15 @@ When writing a function, we should
 <p><strong>SLIDE</strong> Anatomy of a traceback</p>
 <pre class="hljs"><code><div>---------------------------------------------------------------------------
 IndexError                                Traceback (most recent call last)
-&lt;ipython-input<span class="hljs-number">-4</span><span class="hljs-number">-8</span>f18c934933f&gt; <span class="hljs-keyword">in</span> &lt;module&gt;()
+&lt;ipython-input<span class="hljs-number">-2</span><span class="hljs-number">-713948</span>c7cbba&gt; <span class="hljs-keyword">in</span> &lt;module&gt;
 ----&gt; <span class="hljs-number">1</span> favourite_ice_cream()
 
-&lt;ipython-input<span class="hljs-number">-3</span><span class="hljs-number">-3</span>f8910a0f7ad&gt; <span class="hljs-keyword">in</span> favourite_ice_cream()
-      <span class="hljs-number">3</span>                   <span class="hljs-string">"vanilla"</span>,
-      <span class="hljs-number">4</span>                   <span class="hljs-string">"strawberry"</span>]
-----&gt; <span class="hljs-number">5</span>     print(ice_creams[<span class="hljs-number">3</span>])
+&lt;ipython-input<span class="hljs-number">-1</span>-d5749f56e901&gt; <span class="hljs-keyword">in</span> favourite_ice_cream()
+      <span class="hljs-number">1</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">favourite_ice_cream</span><span class="hljs-params">()</span>:</span>
+      <span class="hljs-number">2</span>     ice_creams = [<span class="hljs-string">"chocolate"</span>, <span class="hljs-string">"vanilla"</span>, <span class="hljs-string">"strawberry"</span>]
+----&gt; <span class="hljs-number">3</span>     print(ice_creams[<span class="hljs-number">3</span>])
 
 IndexError: list index out of range
-
 </div></code></pre>
 <ul>
 <li>
@@ -3995,14 +4055,14 @@ IndexError: list index out of range
 <p>The first step has an arrow, showing where we were when the error happened. We were calling the <code>favourite_ice_cream()</code> function</p>
 </li>
 <li>
-<p>The second step tells us that we were <em>in</em> the <code>favourite_ice_cream()</code> function</p>
+<p>The second step tells us that we were <em>in</em> the <code>favourite_ice_cream()</code> function when the error happened</p>
 <ul>
 <li>The second step also points to the line <code>print(ice_creams[3])</code>, which is where the error occurs</li>
 <li>This is also the last step, and the precise error is shown on the final line: <code>IndexError: list index out of range</code></li>
 </ul>
 </li>
 <li>
-<p>Together, this tells us that we have made an index error in the line <code>print(ice_creams[3])</code>, and by looking we can see that we've tried to use an index outside the length of the list.</p>
+<p>Together, this tells us that we have made an index error in the line <code>print(ice_creams[3])</code>, and by looking we can see that we've tried to use an index outside the length of the list. (<code>ice_creams[3]</code> refers to the fourth element, not the third - there are only three elements)</p>
 </li>
 </ul>
 <hr>
@@ -4031,7 +4091,7 @@ IndexError: list index out of range
 </span></div></code></pre>
 <hr>
 <p><strong>SLIDE</strong> Syntax traceback</p>
-<pre class="hljs"><code><div>  File <span class="hljs-string">"&lt;ipython-input-6-bef8c18baffa&gt;"</span>, line <span class="hljs-number">1</span>
+<pre class="hljs"><code><div>  File <span class="hljs-string">"&lt;ipython-input-3-95d391d879b2&gt;"</span>, line <span class="hljs-number">1</span>
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">some_function</span><span class="hljs-params">()</span>
                        ^
 <span class="hljs-title">SyntaxError</span>:</span> invalid syntax
@@ -4065,7 +4125,7 @@ IndexError: list index out of range
 </div></code></pre>
 <hr>
 <p><strong>SLIDE</strong> Not quite</p>
-<pre class="hljs"><code><div>  File <span class="hljs-string">"&lt;ipython-input-7-b32ba7f38b6b&gt;"</span>, line <span class="hljs-number">4</span>
+<pre class="hljs"><code><div>  File <span class="hljs-string">"&lt;ipython-input-4-18d6e2304f63&gt;"</span>, line <span class="hljs-number">4</span>
     <span class="hljs-keyword">return</span> msg
     ^
 IndentationError: unexpected indent
@@ -4079,6 +4139,9 @@ IndentationError: unexpected indent
 <ul>
 <li><strong>(fixing the first error in a file might correct all subsequent errors)</strong></li>
 </ul>
+</li>
+<li>
+<p><strong>CORRECT ERROR AND MOVE ON</strong></p>
 </li>
 </ul>
 <hr>
@@ -4154,7 +4217,7 @@ IndexError                                Traceback (most recent call last)
 IndexError: list index out of range
 </div></code></pre>
 <hr>
-<p><strong>SLIDE</strong> Exercise 11 (10min)</p>
+<p><strong>SLIDE</strong> Exercise 11 (5min)</p>
 <ul>
 <li><strong>PUT SLIDES ON SCREEN</strong></li>
 </ul>
@@ -4325,7 +4388,7 @@ AssertionError: Data should only contain positive values
 <li>The <strong>traceback tells us there is an <code>AssertionError</code> and highlights which <em>assertion</em> failed.</strong>
 <ul>
 <li>The assertion is a check that the code <strong>behaves how <em>we</em> expect</strong></li>
-<li>It can be valid Python, and not throw an error, but it might not be what we want</li>
+<li>A program can be valid Python, and not throw a logic error, but it still might not give the output that we want</li>
 </ul>
 </li>
 </ul>
