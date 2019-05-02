@@ -901,7 +901,7 @@ Can you write a loop that takes a string, e.g. `Newton`, and produces a new stri
 <div class="attention">
 **HINTS**
 
-1. You can "add" strings, e.g. `"ab"" + "cd"`
+1. You can "add" strings, e.g. `"ab" + "cd"`
 2. An *empty string* can be created with empty quotes: `mystr = ""`
 </div>
 
