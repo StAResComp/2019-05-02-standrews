@@ -1432,82 +1432,10 @@ $ python analyse_files.py
 </div>
 
 
-# 09. Conclusions (Part 1)
-
-
-## Learning Outcomes
-
-- variables
-- data types: `numpy.array`s, `list`s, `string`s, numbers
-- file IO: loading data, listing files, manipulating filenames
-- computing statistics
-- plotting data: plots and subplots
-- program flow: loops and conditionals
-- automating multiple analyses
-- `Python` scripts: edit-save-execute
-
-
-## Well done!
-
-<center>
-<img src="images/long_way_to_go.jpg" height="450px" />
-</center>
-
-
-# Building Programs With `Python` (Part 2)
-
-## Etherpad
-
-Please do use the course Etherpad:
-
-- [http://pad.software-carpentry.org/2019-05-02-standrews](http://pad.software-carpentry.org/2019-05-02-standrews)
-
-<div class="highlight">
-- **Communal notes**: share your understanding, and benefit from others
-- **Ask questions**: get detailed answers with links and examples
-- **A record/reference for after the course**
-</div>
-
-
-## Why are we here?
-
-- **To learn basic concepts of programming** (in Python)
-
-<div class="attention">
-- **How to solve problems in your research by…**
-  - Building scripts
-  - Automating tasks
-</div>
-  
-<div class="highlight">
-- **Good coding practice**
-  - Functions
-  - Defensive programming
-</div>
-
-
 ## XKCD: writing good code
 
 <center>
 <img src="images/good_code.png" width="40%" />
-</center>
-
-
-## Setting up
-
-Before we begin… 
-
-<div class="highlight">
-**return to our neat working environment**
-</div>
-
-```bash
-$ cd ~/Desktop
-$ cd pni
-```
-
-<center>
-<img src="images/red_green_sticky.png" width="100%" />
 </center>
 
 
@@ -2785,3 +2713,55 @@ Assertions help understand programs
 
 - Turn bugs into assertions or tests: if you've made the mistake once, you might make it again
 
+# 09. Conclusions (Part 1)
+
+
+## Learning Outcomes
+
+- variables
+- data types: `numpy.array`s, `list`s, `string`s, numbers
+- file IO: loading data, listing files, manipulating filenames
+- computing statistics
+- plotting data: plots and subplots
+- program flow: loops and conditionals
+- automating multiple analyses
+- `Python` scripts: edit-save-execute
+
+
+## Well done!
+
+<center>
+<img src="images/long_way_to_go.jpg" height="450px" />
+</center>
+
+
+# Building Programs With `Python` (Part 2)
+
+## Etherpad
+
+Please do use the course Etherpad:
+
+- [http://pad.software-carpentry.org/2019-05-02-standrews](http://pad.software-carpentry.org/2019-05-02-standrews)
+
+<div class="highlight">
+- **Communal notes**: share your understanding, and benefit from others
+- **Ask questions**: get detailed answers with links and examples
+- **A record/reference for after the course**
+</div>
+
+
+## Why are we here?
+
+- **To learn basic concepts of programming** (in Python)
+
+<div class="attention">
+- **How to solve problems in your research by…**
+  - Building scripts
+  - Automating tasks
+</div>
+  
+<div class="highlight">
+- **Good coding practice**
+  - Functions
+  - Defensive programming
+</div>
