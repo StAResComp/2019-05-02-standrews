@@ -11,7 +11,7 @@ humandate: "2-3 May 2019"    # human-readable dates for the workshop (e.g., "Feb
 humantime: "9:30am - 5pm"    # human-readable times for the workshop (e.g., "9:00 am - 4:30 pm")
 startdate: 2019-05-02      # machine-readable start date for the workshop in YYYY-MM-DD format like 2015-01-01
 enddate: 2019-05-03        # machine-readable end date for the workshop in YYYY-MM-DD format like 2015-01-02
-instructor: ["Alexander Konovalov", "Patrick McCann", "Leighton Pritchard", "Michael Torpey"] # boxed, comma-separated list of instructors' names as strings, like ["Kay McNulty", "Betty Jennings", "Betty Snyder"]
+instructor: ["Olexandr Konovalov", "Patrick McCann", "Leighton Pritchard", "Michael Torpey"] # boxed, comma-separated list of instructors' names as strings, like ["Kay McNulty", "Betty Jennings", "Betty Snyder"]
 helper: ["Isla Barnard", "Eva Borger", "Swithun Crowe", "Stephanie Yardley"]     # boxed, comma-separated list of helpers' names, like ["Marlyn Wescoff", "Fran Bilas", "Ruth Lichterman"]
 email: ["research-computing@st-andrews.ac.uk"]    # boxed, comma-separated list of contact email addresses for the host, lead instructor, or whoever else is handling questions, like ["marlyn.wescoff@example.org", "fran.bilas@example.org", "ruth.lichterman@example.org"]
 collaborative_notes: https://pad.carpentries.org/2019-05-02-standrews            # optional: URL for the workshop collaborative notes, e.g. an Etherpad or Google Docs document
@@ -301,7 +301,7 @@ please preview your site before committing, and make sure to run
 <p>
   We will be running pre-workshop drop-in sessions to assist with any setup issues.
   <ul>
-    <li>North Haugh - 2-4pm, Tuesday 30th April 2019 in the Jack Cole Building with Alex Konovalov</li>
+    <li>North Haugh - 2-4pm, Tuesday 30th April 2019 in the Jack Cole Building with Olexandr Konovalov</li>
     <li>Town - 2-4pm, Wednesday 1st May 2019 at the Old Union Diner with Patrick McCann</li>
   </ul>
 </p>
